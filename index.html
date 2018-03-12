@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+
+  <nav class="nav-extended">
+     <div class="nav-wrapper">
+       <a href="#" class="brand-logo">Logo</a>
+       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+       <ul id="nav-mobile" class="right hide-on-med-and-down">
+         <li><a href="sass.html">Login</a></li>
+         <li><img src="assets/images/cart.svg" alt="" height="20vh"><span id="counter-items">0</span></li>
+         <li><a href="views/checkout.html">Checkout</a></li>
+       </ul>
+       <ul class="side-nav" id="mobile-demo">
+         <li><a href="sass.html">Login</a></li>
+         <li><img src="assets/images/cart.svg" alt=""><span id="counterItems">0</span></li>
+         <li><a href="views/checkout.html">Checkout</a></li>
+       </ul>
+     </div>
+     <div class="nav-content">
+       <ul class="tabs tabs-transparent">
+           <li data-section="jewelry" onclick="callApi()" class="tab"><a class="active" href="#jewelry">Home</a></li>
+           <li data-section="necklace" onclick="callApi()" class="tab"><a href="#necklace">Necklaces</a></li>
+           <li data-section="ring" onclick="callApi()" class="tab"><a href="#ring">Rings</a></li>
+           <li data-section="bracelet" onclick="callApi()" class="tab"><a href="#bracelet">Bracelets</a></li>
+           <li data-section="earrings" onclick="callApi()" class="tab"><a href="#earrings">Earrings</a></li>
+       </ul>
+       <form id="etsy-search">
+         <div class="input-field">
+           <input id="etsy-terms" type="search">
+           <label class="label-icon" for="etsy-terms"><i class="material-icons">search</i></label>
+           <i class="material-icons">close</i>
+           <button type="submit" name="button">Search</button>
+         </div>
+       </form>
+     </div>
+   </nav>
+
+
+ <!-- ***** SECTION TABS ***** -->
+  <div class="container">
+    <div id="etsy-images"></div>
+    <div class="row" id="jewelry">
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row" id="necklace"></div>
+  </div>
+
+  <div class="container">
+    <div class="row" id="ring"></div>
+  </div>
+
+  <div class="container">
+    <div class="row" id="bracelet"></div>
+  </div>
+
+  <div class="container">
+    <div class="row" id="earrings"></div>
+  </div>
+
+
+
+
+<!-- ***** SCRIPTS ***** -->
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-database.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
