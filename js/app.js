@@ -10,6 +10,19 @@ var config = {
 firebase.initializeApp(config);
 
 
+//Inicializamos collapse se materiliza
+//    $('.collapsible').collapsible();
+
+
+
+
+//LLAMAMOS A LOS CONTENEDORES DE LAS TABS Y DE CHECKOUT
+const sectionTabs = document.querySelector("#tabs");
+const sectionCheckout = document.querySelector("#paypal-button-container");
+sectionCheckout.classList.add("hide");
+
+
+
 const callGeneralProductsApi = () => {
   const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=jewelry&includes=MainImage,Images:3&limit=50&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
   let sectionName = "jewelry";
@@ -22,6 +35,7 @@ const callGeneralProductsApi = () => {
 
 }
 callGeneralProductsApi();
+
 
 //FUNCIÓN PARA LLAMAR A LA API EN CADA CLICK EN EL NOMBRE DE LA SECCIÓN
 const callApi = e => {
@@ -42,20 +56,38 @@ const callApi = e => {
 //FUNCIÓN PARA PINTAR PRODUCTOS EN CADA SECCIÓN
 const printData = (data, sectionName) => {
 
+  sectionTabs.classList.remove("hide");
+  sectionCheckout.classList.add("hide");
 
     const containerSection = document.querySelector(`#${sectionName}`);
 
     data.forEach(item => {
       let photo = item.Images;
 
-        let titleItem = item.title.split(".");
+        let titleItem = item.title.split(/[,.*-]/g);
+        let descriptionItem = item.description.split(/[,.*-]/g);
+
         let template =`
-        <img class="responsive-img" src=${item.MainImage.url_570xN}>
-        <h5>${titleItem[0]}</h5>
-        <p>Price: ${item.price}${item.currency_code}</p>
-        <p>Quedan: ${item.quantity}</p>
-        <button data-product-id=${item.listing_id} onclick="addToCart(this, ${item.listing_id})" class='btn btn-primary'>Agregar a carrito</button>
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src=${item.MainImage.url_570xN}>
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">more_vert</i></span>
+            <p>Price: ${item.price}${item.currency_code}</p>
+            <p>Quedan: ${item.quantity}</p>
+            <button data-product-id=${item.listing_id} onclick="addToCart(this, ${item.listing_id})" class='btn btn-primary'>Agregar a carrito</button>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">close</i></span>
+            <p>${descriptionItem[0]}</p>
+            <p>Materials: ${item.materials}</p>
+          </div>
+
+        </div>
         `;
+
+
 
         const containerProduct = document.createElement("div");
         containerProduct.classList.add("col");
@@ -65,6 +97,9 @@ const printData = (data, sectionName) => {
 
     })
 }
+
+
+
 
 const addToCart = (product, id) => {
 
@@ -131,7 +166,69 @@ const removeFromCart = id => {
     });
 
 })(jQuery);
+
+
+
+//CUANDO DAMOS CLICK EN CHECKOUT OCULTAMOS LAS TABS Y MOSTRAMOS LA VISTA DE CHECKOUT
+const payment = () => {
+  sectionTabs.classList.add("hide");
+  sectionCheckout.classList.remove("hide");
+}
+
+const checkoutLink = document.querySelector("#checkout-link");
+checkoutLink.addEventListener("click", payment);
+
+
+const precio = 12;
+
+paypal.Button.render({
+        env: 'sandbox', // sandbox | production
+
+        // PayPal Client IDs - replace with your own
+        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+        client: {
+            sandbox:    'AR7YFz66UBmZT2ujQ13MVC2Wcbrbb168hFA855qN5i-DtD9Uqx6Bk980zpYA_9zEfsVrX3GVy-SSYv_E',
+            production: 'AZwtebwVV7oNYII1ZGc4tZF74uhotXDvle87uMGMeSvwvVvZ4oJTQ6JtR611__YSOvXFDyUVaa0aT70V'
+        },
+
+        // Show the buyer a 'Pay Now' button in the checkout flow
+        commit: true,
+
+        // payment() is called when the button is clicked
+        payment: function(data, actions) {
+
+            // Make a call to the REST api to create the payment
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: `${precio}`, currency: 'USD' }
+
+                        }
+                    ]
+                }
+            });
+        },
+
+        // onAuthorize() is called when the buyer approves the payment
+        onAuthorize: function(data, actions) {
+
+            // Make a call to the REST api to execute the payment
+            return actions.payment.execute().then(function() {
+                window.alert('Payment Complete!');
+            });
+        }
+
+    }, '#paypal-button-container');
+
+
+
+
+
+
+
 /*
+
 const printData = (data, sectionName) => {
 
 
