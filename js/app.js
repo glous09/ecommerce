@@ -73,14 +73,14 @@ const printData = (data, sectionName) => {
 
         let template = `
         <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
+          <div class="card-image">
             <img class="activator" src=${item.MainImage.url_570xN}>
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">more_vert</i></span>
             <p>Price: ${item.price}${item.currency_code}</p>
             <p>Quedan: ${item.quantity}</p>
-            <button data-product-id=${item.listing_id} onclick="changeButtonMode(this, ${item.listing_id})" class='btn btn-primary'>Add to cart</button>
+            <button data-product-id=${item.listing_id} onclick="changeButtonMode(this, ${item.listing_id})" class='btn purple3'>Add to cart</button>
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">close</i></span>
@@ -105,9 +105,11 @@ function changeButtonMode(button, id) {
       button.innerHTML = 'Remove from cart'
       button.classList.add("red")
       addToCart(id)
-    }else{
+    }else if (button.innerHTML === 'Remove from cart'){
+      button.classList.add("purple3")
       button.innerHTML = 'Add to cart'
       button.classList.remove("red");
+
       removeFromCart(id);
    }
 }
@@ -158,6 +160,8 @@ function decreaseCounter() {
 (function ($) {
 
     $(document).ready(function () {
+        $(".button-collapse").sideNav();
+        $('.carousel.carousel-slider').carousel({fullWidth: true});
         $('#etsy-search').bind('submit', function () {
             api_key = "your_api_key";
             terms = $('#etsy-terms').val();

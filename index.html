@@ -7,87 +7,93 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Limelight|Montserrat:400,500,600,700,900" rel="stylesheet">  <link rel="stylesheet" href="css/main.css">
 
 
 </head>
 <body>
-
-  <nav class="purple1 ">
+      
+  <nav class="transparent">
      <div class="nav-wrapper">
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><img src="assets/images/cart.svg" alt="" height="20vh"><span id="counter-items">0</span></li>
-        </ul>
        <!-- <a href="#" class="brand-logo center">Logo</a> -->
-       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-       
-       <ul id="nav-mobile" class="right hide-on-med-and-down">
-         <li><img src="assets/images/cart.svg" alt="" height="20vh"><span id="counter-items">0</span></li>
-         <li><a href="#">Login</a></li>
-         <li><a href="#checkout" id="checkout-link">Checkout</a></li>
-       </ul>
+       <a href="#" data-activates="mobile-demo" class="button-collapse purple5-text"><i class="material-icons">menu</i></a>
+      <div class="row">
+        <div class="col l5 push-l5 m5 push-m5">
+            <ul id="nav-mobile" class="hide-on-med-and-down right">
+                <li><img src="assets/images/cart.svg" alt="" height="20vh"><span class="purple5-text" id="counter-items">0</span></li>
+                <li><a class="purple5-text" href="#">Login</a></li>
+                <li><a class="purple5-text" href="#checkout" id="checkout-link">Checkout</a></li>
+                <li class="spaceNav"></li>
+              </ul>
+        </div>
+      </div>
+   
        
        <ul class="side-nav" id="mobile-demo">
-          <ul>
-              <li><img src="assets/images/cart.svg" alt="" height="20vh"><span id="counter-items">0</span></li>
-           </ul>
-         <li><a href="#">Login</a></li>
-         <li><img src="assets/images/cart.svg" alt=""><span id="counterItems">0</span></li>
-         <li><a href="#checkout" id="checkout-link">Checkout</a></li>
+          <li><div class="user-view">
+              <div class="background">
+                <img src="images/office.jpg">
+              </div>
+              <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+              <a href="#!name"><span class="white-text name">John Doe</span></a>
+              <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            </div></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
        </ul>
      </div>
    </nav>
-   <div class="nav1 purple4-text">
-     <h1>AMATISTA</h1>
-     <div class="row">
-        <div class="col l6 push-l3">
-          <div class="row"></div>
-         <form id="etsy-search">
-           <div class="input-field">
-             <input id="etsy-terms" type="search">
-             <label class="label-icon" for="etsy-terms"><i class="material-icons">search</i></label>
-             <i class="material-icons">close</i>
-             <button type="submit" name="button" >Search</button>
-           </div>
-         </form>
+   <!-- <div class="nav1 purple4-text"> -->
+      <div class="carousel carousel-slider center" data-indicators="true">
+          <div class="carousel-fixed-item center purple1fade">
+              <h1 class="limelight purple1-text">AMATISTA</h1>
+              <nav  class="purple1">
+                  <div class="container push-s3 nav-wrapper white  purple3-text ">
+                      <form id="etsy-search">
+                          <div class="input-field">
+                            <label for="">Search for jewerly, gifts, accesories...</label>
+                            <input id="etsy-terms" type="search">
+                            <label class="label-icon" for="etsy-terms"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                            <button type="submit" name="button" class="btn purple4">Search</button>
+                          </div>
+                        </form>
+                  </div>
+                </nav>
+                <div class="row"></div>
+                <div class="row"></div>
+          </div>
+       
+          <div class="carousel-item purple5 white-text" href="#one!">
+            <img class="carImg" src="assets/images/am3.jpg" alt="" width="50px">
+          </div>
+          <div class="carousel-item purple2 white-text" href="#two!">
+            <img class="carImg" src="assets/images/am2.jpg" alt="" width="50px">
+          </div>
+          <div class="carousel-item purple3 white-text" href="#three!">
+            <img class="carImg" src="assets/images/am1.jpg" alt="" width="50px">
+          </div>
+          <div class="carousel-item purple4 white-text" href="#four!">
+            <img class="carImg" src="assets/images/am4.jpg" alt="" width="50px">
+          </div>
         </div>
-      </div>
-   </div>
-
+  
+    <!-- </div> -->
+      
    <div class="nav-content ">
-      <ul class="tabs purple2 black-text center">
-          <li data-section="jewelry" onclick="callApi()" class="tab purple4-text"><a class="active" href="#jewelry">Home</a></li>
-          <li data-section="necklace" onclick="callApi()" class="tab purple4-text"><a href="#necklace">Necklaces</a></li>
-          <li data-section="ring" onclick="callApi()" class="tab purple4-text"><a href="#ring">Rings</a></li>
-          <li data-section="bracelet" onclick="callApi()" class="tab purple4-text"><a href="#bracelet">Bracelets</a></li>
-          <li data-section="earrings" onclick="callApi()" class="tab purple4-text"><a href="#earrings">Earrings</a></li>
+      <ul class="tabs purple5 black-text center">
+          <li data-section="jewelry" onclick="callApi()" class="tab"><a class="active" href="#jewelry">Home</a></li>
+          <li data-section="necklace" onclick="callApi()" class="tab"><a href="#necklace">Necklaces</a></li>
+          <li data-section="ring" onclick="callApi()" class="tab"><a href="#ring">Rings</a></li>
+          <li data-section="bracelet" onclick="callApi()" class="tab"><a href="#bracelet">Bracelets</a></li>
+          <li data-section="earrings" onclick="callApi()" class="tab"><a href="#earrings">Earrings</a></li>
          </ul>
     </div>
 
 
-
-   <div class="carousel carousel-slider center" data-indicators="true">
-      <div class="carousel-fixed-item center">
-
-      </div>
-      <div class="carousel-item purple5 white-text" href="#one!">
-        <h2>First Panel</h2>
-        <p class="white-text">This is your first panel</p>
-      </div>
-      <div class="carousel-item purple2 white-text" href="#two!">
-        <h2>Second Panel</h2>
-        <p class="white-text">This is your second panel</p>
-      </div>
-      <div class="carousel-item purple3 white-text" href="#three!">
-        <h2>Third Panel</h2>
-        <p class="white-text">This is your third panel</p>
-      </div>
-      <div class="carousel-item purple4 white-text" href="#four!">
-        <h2>Fourth Panel</h2>
-        <p class="white-text">This is your fourth panel</p>
-      </div>
-    </div>
 
  <!-- ***** SECTION TABS ***** -->
 
@@ -123,7 +129,7 @@
 
  <!-- ***** FOOTER ***** -->
 
-<footer class="page-footer">
+<footer class="page-footer purple3">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
