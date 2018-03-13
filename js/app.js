@@ -161,6 +161,8 @@ function addToCart (button, id) {
 (function ($) {
 
     $(document).ready(function () {
+        $(".button-collapse").sideNav();
+        $('.carousel.carousel-slider').carousel({fullWidth: true});
         $('#etsy-search').bind('submit', function () {
             api_key = "your_api_key";
             terms = $('#etsy-terms').val();
