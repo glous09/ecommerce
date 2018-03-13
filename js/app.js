@@ -89,6 +89,8 @@ const printData = (data, sectionName) => {
 
 function changeButtonMode(button, id) {
 
+    console.log(button)
+
     if (button.innerHTML === 'Add to cart'){
       button.innerHTML = 'Remove from cart'
       button.classList.add("red")

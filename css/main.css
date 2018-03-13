@@ -72,6 +72,10 @@ li{
     line-height: 80px; 
 }
 
+.transparency{
+    opacity: 0.3;
+}
+
 .image-profile {
   width: 10%;
   border-radius: 50%;
