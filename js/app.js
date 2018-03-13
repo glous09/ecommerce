@@ -110,7 +110,7 @@ function changeButtonMode(button, id) {
       removeFromCart(button);
    }
 }
-  
+
 function addToCart (button, id) {
 
     let cartStorage = localStorage.getItem("cart");
@@ -303,45 +303,45 @@ const printData = (data, sectionName) => {
     messagingSenderId: "639464110271"
   };
   firebase.initializeApp(config);
-  
-  
+
+
   const callGeneralProductsApi = () => {
     const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=jewelry&includes=MainImage,Images:3&limit=50&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
     let sectionName = "jewelry";
-  
+
     fetch( url )
         .then( r => r.json() )
         .then( data => { const dataInfo = data.results;
             printData(dataInfo, sectionName) })
         .catch( e => console.log( e ) );
-  
+
   }
   callGeneralProductsApi();
-  
+
   //FUNCIÓN PARA LLAMAR A LA API EN CADA CLICK EN EL NOMBRE DE LA SECCIÓN
   const callApi = e => {
     const sectionClick = event.currentTarget;
     const sectionName = sectionClick.dataset.section;
-  
+
     const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=${sectionName}&includes=MainImage,Images:3&limit=50&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
-  
-  
+
+
     fetch( url )
         .then( r => r.json() )
         .then( data => { const dataInfo = data.results;
             printData(dataInfo, sectionName) })
         .catch( e => console.log( 'Something went wrong' ) );
   }
-  
-  
+
+
   //FUNCIÓN PARA PINTAR PRODUCTOS EN CADA SECCIÓN
   const printData = (data, sectionName) => {
-  
+
       const containerSection = document.querySelector(`#${sectionName}`);
-  
+
       data.forEach(item => {
         let photo = item.Images;
-  
+
           let titleItem = item.title.split(".");
           let template =`
           <img class="responsive-img" src=${item.MainImage.url_570xN}>
@@ -350,13 +350,13 @@ const printData = (data, sectionName) => {
           <p>Quedan: ${item.quantity}</p>
           <button data-product-id=${item.listing_id} onclick="changeButtonMode(this,${item.listing_id})" class='btn btn-primary'>Add to cart</button>
           `;
-  
+
           const containerProduct = document.createElement("div");
           containerProduct.classList.add("col");
           containerProduct.classList.add("m4");
           containerProduct.innerHTML = template;
           containerSection.appendChild(containerProduct);
-  
+
       })
   }
 
@@ -371,7 +371,7 @@ const printData = (data, sectionName) => {
       removeFromCart(button);
    }
 }
-  
+
 function addToCart (button, id) {
 
     let cartStorage = localStorage.getItem("cart");
@@ -418,22 +418,22 @@ function addToCart (button, id) {
 
   }
 
-  
 
-  
-  
+
+
+
   (function($){
-  
+
       $(document).ready(function(){
           $('#etsy-search').bind('submit', function() {
               api_key = "your_api_key";
               terms = $('#etsy-terms').val();
               etsyURL = "https://openapi.etsy.com/v2/listings/active.js?keywords="+
                   terms+"&limit=12&includes=Images:1&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl";
-  
+
               $('#etsy-images').empty();
               $('<p></p>').text('Searching for '+terms).appendTo('#etsy-images');
-  
+
               $.ajax({
                   url: etsyURL,
                   dataType: 'jsonp',
@@ -458,11 +458,11 @@ function addToCart (button, id) {
                       }
                   }
               });
-  
+
               return false;
           })
       });
-  
+
   })(jQuery);
   /*
   const printData = (data, sectionName) => {
@@ -494,4 +494,3 @@ function addToCart (button, id) {
       })
   }
   */
-
