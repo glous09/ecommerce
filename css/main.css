@@ -1,5 +1,5 @@
 body{
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 a{
@@ -9,8 +9,17 @@ a{
 li{
     color: black;
 }
+
+.limelight{
+    font-family: 'Limelight', cursive;
+}
+
 .purple1{
     background-color: #F1E6EA;
+}
+
+.purple1fade{
+    background: rgba(54, 25, 25, .5);
 }
 
 .purple1-text{
@@ -49,17 +58,22 @@ li{
     color: #3B141E;
 }
 
+.spaceNav{
+    width: 400px;
+}
+
 .nav1{
-    height: 200px;
+    height: 300px;
     background: url(http://www.revistanuevaera.cl/wp-content/uploads/2015/01/Amatistapropiedades.jpg);
     background-repeat: no-repeat;
     background-size: 1800px;
     text-align: center;
-vertical-align: middle;
-line-height: 80px;
+    vertical-align: middle;
+    line-height: 80px; 
 }
 
 .image-profile {
   width: 10%;
   border-radius: 50%;
 }
+

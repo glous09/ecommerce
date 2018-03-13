@@ -60,7 +60,7 @@ const printData = (data, sectionName) => {
 
         let template = `
         <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
+          <div class="card-image">
             <img class="activator" src=${item.MainImage.url_570xN}>
           </div>
           <div class="card-content">
@@ -93,9 +93,11 @@ function changeButtonMode(button, id) {
       button.innerHTML = 'Remove from cart'
       button.classList.add("red")
       addToCart(id)
-    }else{
+    }else if (button.innerHTML === 'Remove from cart'){
+      button.classList.add("purple3")
       button.innerHTML = 'Add to cart'
       button.classList.remove("red");
+
       removeFromCart(id);
    }
 }
@@ -147,6 +149,8 @@ function decreaseCounter() {
 (function ($) {
 
     $(document).ready(function () {
+        $(".button-collapse").sideNav();
+        $('.carousel.carousel-slider').carousel({fullWidth: true});
         $('#etsy-search').bind('submit', function () {
             api_key = "your_api_key";
             terms = $('#etsy-terms').val();
