@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rozha+One" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 
 </head>
@@ -27,25 +28,30 @@
          <li><a href="views/checkout.html">Checkout</a></li>
        </ul>
      </div>
-     <div class="nav-content">
-       <ul class="tabs tabs-transparent">
-           <li data-section="jewelry" onclick="callApi()" class="tab"><a class="active" href="#jewelry">Home</a></li>
-           <li data-section="necklace" onclick="callApi()" class="tab"><a href="#necklace">Necklaces</a></li>
-           <li data-section="ring" onclick="callApi()" class="tab"><a href="#ring">Rings</a></li>
-           <li data-section="bracelet" onclick="callApi()" class="tab"><a href="#bracelet">Bracelets</a></li>
-           <li data-section="earrings" onclick="callApi()" class="tab"><a href="#earrings">Earrings</a></li>
-       </ul>
-       <form id="etsy-search">
-         <div class="input-field">
-           <input id="etsy-terms" type="search">
-           <label class="label-icon" for="etsy-terms"><i class="material-icons">search</i></label>
-           <i class="material-icons">close</i>
-           <button type="submit" name="button">Search</button>
-         </div>
-       </form>
-     </div>
    </nav>
 
+   <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+          <li data-section="jewelry" onclick="callApi()" class="tab"><a class="active" href="#jewelry">Home</a></li>
+          <li data-section="necklace" onclick="callApi()" class="tab"><a href="#necklace">Necklaces</a></li>
+          <li data-section="ring" onclick="callApi()" class="tab"><a href="#ring">Rings</a></li>
+          <li data-section="bracelet" onclick="callApi()" class="tab"><a href="#bracelet">Bracelets</a></li>
+          <li data-section="earrings" onclick="callApi()" class="tab"><a href="#earrings">Earrings</a></li>
+         </ul>
+    </div>
+
+   <div class="row">
+     <div class="col l6 push-l4">
+      <form id="etsy-search">
+        <div class="input-field">
+          <input id="etsy-terms" type="search">
+          <label class="label-icon" for="etsy-terms"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+          <button type="submit" name="button">Search</button>
+        </div>
+      </form>
+     </div>
+   </div>
 
  <!-- ***** SECTION TABS ***** -->
   <div class="container">

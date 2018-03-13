@@ -94,7 +94,6 @@ function addToCart (button, id) {
 
 
   function increaseCounter() {
-
     let containerCounter = document.getElementById("counter-items");
     let stringIds = localStorage.getItem("cart")
     let strIdToArr = (JSON.parse(stringIds)).length;
@@ -106,22 +105,23 @@ function addToCart (button, id) {
 
     let cartInfo = JSON.parse(localStorage.getItem("cart"));
     console.log(cartInfo);
-    // let indexOfItemToDelete = cartInfo.indexOf(id);
-    // cartInfo.splice(indexOfItemToDelete, 1);
-    // localStorage.setItem("cart", JSON.stringify(cartInfo));
-    // decreaseCounter()
+    let indexOfItemToDelete = cartInfo.indexOf(id);
+    console.log(indexOfItemToDelete)
+    cartInfo.splice(indexOfItemToDelete, 1);
+    localStorage.setItem("cart", JSON.stringify(cartInfo));
+    decreaseCounter()
   }
 
 
-//   function decreaseCounter() {
+  function decreaseCounter() {
 
-//     let containerCounter = document.getElementById("counter-items");
-//     let stringIds = localStorage.getItem("cart")
-//     let strIdToArr = (JSON.parse(stringIds)).length;
-//     console.log(strIdToArr);
-//     containerCounter.innerText = strIdToArr;
+    let containerCounter = document.getElementById("counter-items");
+    let stringIds = localStorage.getItem("cart")
+    let strIdToArr = (JSON.parse(stringIds)).length;
+    console.log(strIdToArr);
+    containerCounter.innerText = strIdToArr;
 
-//   }
+  }
 
   
 
