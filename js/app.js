@@ -112,6 +112,7 @@ function changeButtonMode(button, id) {
    }
 }
 
+
 function addToCart(id) {
   let carritoStorage = localStorage.getItem("cart");
   let cartIds;
@@ -261,3 +262,4 @@ paypal.Button.render({
     }
 
 }, '#paypal-button-container');
+
