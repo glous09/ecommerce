@@ -1,19 +1,3 @@
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyB_O-N-451D3HGA4ZMpDyPBMub6THA0ork",
-    authDomain: "lovecommerce-ddada.firebaseapp.com",
-    databaseURL: "https://lovecommerce-ddada.firebaseio.com",
-    projectId: "lovecommerce-ddada",
-    storageBucket: "lovecommerce-ddada.appspot.com",
-    messagingSenderId: "639464110271"
-};
-firebase.initializeApp(config);
-
-
-//Inicializamos collapse se materiliza
-//    $('.collapsible').collapsible();
-
-
 
 
 //LLAMAMOS A LOS CONTENEDORES DE LAS TABS Y DE CHECKOUT
@@ -66,10 +50,13 @@ const printData = (data, sectionName) => {
     const containerSection = document.querySelector(`#${sectionName}`);
 
     data.forEach(item => {
+
+            let itemProduct = JSON.stringify(item);
+
         let photo = item.Images;
         //.split(/[,.*-]/g)
-        let titleItem = item.title.split(".");
-        let descriptionItem = item.description.split(".");
+        let titleItem = item.title.split(/[,.*-]/g);
+        let descriptionItem = item.description.split(/[,.*-]/g);
 
         let template = `
         <div class="card">
@@ -78,9 +65,9 @@ const printData = (data, sectionName) => {
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">more_vert</i></span>
-            <p>Price: ${item.price}${item.currency_code}</p>
+            <p>Price: ${item.price} USD</p>
             <p>Quedan: ${item.quantity}</p>
-            <button data-product-id=${item.listing_id} onclick="changeButtonMode(this, ${item.listing_id})" class='btn purple3'>Add to cart</button>
+            <button data-product-id=${item.listing_id} data-price=${item.price} data-total=${itemProduct} onclick="changeButtonMode(this, ${item.listing_id})" class='btn btn-primary'>Add to cart</button>
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">close</i></span>
@@ -101,6 +88,7 @@ const printData = (data, sectionName) => {
 
 
 function changeButtonMode(button, id) {
+
     if (button.innerHTML === 'Add to cart'){
       button.innerHTML = 'Remove from cart'
       button.classList.add("red")
@@ -113,6 +101,7 @@ function changeButtonMode(button, id) {
       removeFromCart(id);
    }
 }
+
 
 function addToCart(id) {
   let carritoStorage = localStorage.getItem("cart");
@@ -265,3 +254,4 @@ paypal.Button.render({
     }
 
 }, '#paypal-button-container');
+
