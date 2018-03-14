@@ -10,6 +10,10 @@ li{
     color: black;
 }
 
+.cardFontSize{
+    font-size: 9pt;
+}
+
 .limelight{
     font-family: 'Limelight', cursive;
 }
