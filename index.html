@@ -45,18 +45,18 @@
    </nav>
 
        <!-- </div> -->
-      
-       <div class="nav-content ">
+       <div class="nav-content">
           <ul class="tabs purple5 black-text center">
-              <li data-section="jewelry" onclick="callApi()" class="tab"><a class="active" href="#jewelry">Home</a></li>
+              <li data-sectioln="jewelry" onclick="callApi()" class="tab"><a class="active" href="#jewelry">Home</a></li>
               <li data-section="necklace" onclick="callApi()" class="tab"><a href="#necklace">Necklaces</a></li>
               <li data-section="ring" onclick="callApi()" class="tab"><a href="#ring">Rings</a></li>
               <li data-section="bracelet" onclick="callApi()" class="tab"><a href="#bracelet">Bracelets</a></li>
               <li data-section="earrings" onclick="callApi()" class="tab"><a href="#earrings">Earrings</a></li>
-             </ul>
+            </ul>
         </div>
+        
    <!-- <div class="nav1 purple4-text"> -->
-      <div class="carousel carousel-slider center" data-indicators="true">
+      <div class="carousel carousel-slider center " id="carousel" data-indicators="true">
           <div class="carousel-fixed-item center purple1fade">
               <h1 class="limelight purple1-text">AMATISTA</h1>
               
@@ -89,9 +89,6 @@
             <img class="carImg" src="assets/images/am4.jpg" alt="" width="50px">
           </div>
         </div>
-  
-
-
 
 
     <!-- ***** SECTION TABS ***** -->
@@ -120,8 +117,11 @@
     </div>
 
 
-    <!-- ***** SECTION PAYMENT ***** -->
+    <!-- ***** SECTION CHECKOUT ***** -->
 
+
+    <div id="checkout-container"></div>
+    <div id="total_container"></div>
     <div id="paypal-button-container"></div>
 
 
