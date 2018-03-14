@@ -1,10 +1,11 @@
-
-
 //LLAMAMOS A LOS CONTENEDORES DE LAS TABS Y DE CHECKOUT
 const sectionTabs = document.querySelector("#tabs");
 const sectionCheckout = document.querySelector("#paypal-button-container");
+const checkoutContainer = document.getElementById('checkout-container')
+const totalContainer = document.getElementById('total_container')
 sectionCheckout.classList.add("hide");
-
+checkoutContainer.classList.add("hide");
+totalContainer.classList.add("hide");
 
 
 const callGeneralProductsApi = () => {
@@ -28,7 +29,7 @@ const callApi = e => {
     const sectionClick = event.currentTarget;
     const sectionName = sectionClick.dataset.section;
 
-    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=${sectionName}&includes=MainImage,Images:3&limit=50&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
+    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=${sectionName}&includes=MainImage,Images:3&limit=5&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
 
 
     fetch(url)
@@ -36,9 +37,12 @@ const callApi = e => {
         .then(data => {
             const dataInfo = data.results;
             printData(dataInfo, sectionName)
+            
         })
         .catch(e => console.log('Something went wrong'));
 }
+
+
 
 
 //FUNCIÓN PARA PINTAR PRODUCTOS EN CADA SECCIÓN
@@ -51,9 +55,10 @@ const printData = (data, sectionName) => {
 
     data.forEach(item => {
 
-            let itemProduct = JSON.stringify(item);
+        let itemProduct = JSON.stringify(item);
 
         let photo = item.Images;
+
         //.split(/[,.*-]/g)
         let titleItem = item.title.split(/[,.*-]/g);
         let descriptionItem = item.description.split(/[,.*-]/g);
@@ -67,14 +72,13 @@ const printData = (data, sectionName) => {
             <span class="card-title activator grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">more_vert</i></span>
             <p>Price: ${item.price} USD</p>
             <p>Quedan: ${item.quantity}</p>
-            <button data-product-id=${item.listing_id} data-price=${item.price} data-total=${itemProduct} onclick="changeButtonMode(this, ${item.listing_id})" class='btn btn-primary'>Add to cart</button>
+            <button data-product-id=${item.listing_id} data-price=${item.price} data-title=${titleItem[0]} data-image=${item.MainImage.url_570xN} onclick="changeButtonMode(this, ${item.listing_id})" class='btn btn-primary'>Add to cart</button>
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">close</i></span>
             <p>${descriptionItem[0]}</p>
             <p>Materials: ${item.materials}</p>
           </div>
-
         </div>
         `;
         const containerProduct = document.createElement("div");
@@ -86,73 +90,63 @@ const printData = (data, sectionName) => {
     })
 }
 
+let cartProducts = []
+
 
 function changeButtonMode(button, id) {
+    let info = event.target.dataset;
+    let data = JSON.parse(JSON.stringify(info))
 
-    console.log(button)
-
-    if (button.innerHTML === 'Add to cart'){
-      button.innerHTML = 'Remove from cart'
-      button.classList.add("red")
-      addToCart(id)
-    }else if (button.innerHTML === 'Remove from cart'){
-      button.classList.add("purple3")
-      button.innerHTML = 'Add to cart'
-      button.classList.remove("red");
-
-      removeFromCart(id);
-   }
+    if (button.innerHTML === 'Add to cart') {
+        button.innerHTML = 'Remove from cart'
+        button.classList.add("red")
+        addToCart(data)
+    } else if (button.innerHTML === 'Remove from cart') {
+        button.classList.add("purple3")
+        button.innerHTML = 'Add to cart'
+        button.classList.remove("red");
+        // removeFromCart(data);
+    }
 }
 
-
-function addToCart(id) {
-  let carritoStorage = localStorage.getItem("cart");
-  let cartIds;
-  if (carritoStorage === null) {
-    cartIds = [];
-  } else {
-    cartIds = JSON.parse(carritoStorage);
-  }
-  cartIds.push(id);
-  //console.log(cartIds);
-  localStorage.setItem("cart", JSON.stringify(cartIds));
-  increaseCounter();
-}
-
-function removeFromCart(id) {
-  let cartInfo = JSON.parse(localStorage.getItem("cart"));
-  let indexOfItemToDelete = cartInfo.indexOf(id);
-  //console.log(cartInfo);
-  //console.log(indexOfItemToDelete);
-  cartInfo.splice(indexOfItemToDelete, 1);
-  localStorage.setItem("cart", JSON.stringify(cartInfo));
-  //console.log(localStorage.getItem("cart"));
-  decreaseCounter()
+function addToCart(data) {
+   cartProducts.push(data);
+    increaseCounter();
 }
 
 function increaseCounter() {
-  let containerCounter = document.getElementById("counter-items");
-  let stringIds = localStorage.getItem("cart")
-  let strIdToArr = (JSON.parse(stringIds)).length;
-  containerCounter.innerText = strIdToArr;
-
+    let containerCounter = document.getElementById("counter-items");
+    let elementsInArr = cartProducts.length;
+    containerCounter.innerText = elementsInArr;
+    console.log(elementsInArr);
 }
 
-function decreaseCounter() {
-  let containerCounter = document.getElementById("counter-items");
-  let stringIds = localStorage.getItem("cart")
-  let strIdToArr = (JSON.parse(stringIds)).length;
-  //console.log(strIdToArr);
-  containerCounter.innerText = strIdToArr;
-}
+// function removeFromCart(data) {
 
+//     let indexOfItemToDelete = cartProducts.indexOf(id);
+//     //console.log(cartInfo);
+//     //console.log(indexOfItemToDelete);
+//     cartInfo.splice(indexOfItemToDelete, 1);
+//     localStorage.setItem("cart", JSON.stringify(cartInfo));
+//     console.log(localStorage.getItem("cart"));
+//     decreaseCounter()
+// }
+
+
+
+// function decreaseCounter() {
+//     let containerCounter = document.getElementById("counter-items");
+//     let stringIds = localStorage.getItem("cart")
+//     let strIdToArr = (JSON.parse(stringIds)).length;
+//     //console.log(strIdToArr);
+//     containerCounter.innerText = strIdToArr;
+// }
 
 
 (function ($) {
-
     $(document).ready(function () {
         $(".button-collapse").sideNav();
-        $('.carousel.carousel-slider').carousel({fullWidth: true});
+        $('.carousel.carousel-slider').carousel({ fullWidth: true });
         $('#etsy-search').bind('submit', function () {
             api_key = "your_api_key";
             terms = $('#etsy-terms').val();
@@ -196,26 +190,42 @@ function decreaseCounter() {
 
 
 //CUANDO DAMOS CLICK EN CHECKOUT OCULTAMOS LAS TABS Y MOSTRAMOS LA VISTA DE CHECKOUT
+
+
+
 const payment = () => {
     sectionTabs.classList.add("hide");
     sectionCheckout.classList.remove("hide");
+    checkoutContainer.classList.remove("hide");
+    totalContainer.classList.remove("hide");
     checkoutView();
 }
 
 const checkoutLink = document.querySelector("#checkout-link");
 checkoutLink.addEventListener("click", payment);
 
+let sum = 0;
+
 const checkoutView = () => {
-    let cartItems = JSON.parse(localStorage.getItem("cart"));
-    console.log(cartItems);
-    fetch()
+    
+    let template = '';
+    
+    cartProducts.forEach(product => {
+        let price = parseInt(product.price);
+        console.log(price);
+        template += `<tr>
+        <th scope="row">${product.title}</th>
+        <td>${product.price}</td>
+        </tr>`
+      
+        sum = sum + price;
+    })
+    totalContainer.innerHTML = sum;
+    checkoutContainer.innerHTML = template;
+
 }
 
-
-
-
-
-const precio = 12;
+    let precio = 30;
 
 paypal.Button.render({
     env: 'sandbox', // sandbox | production
@@ -256,4 +266,3 @@ paypal.Button.render({
     }
 
 }, '#paypal-button-container');
-

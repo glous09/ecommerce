@@ -66,6 +66,10 @@ li{
     width: 400px;
 }
 
+.show{
+    display: block;
+}
+
 .nav1{
     height: 300px;
     background: url(http://www.revistanuevaera.cl/wp-content/uploads/2015/01/Amatistapropiedades.jpg);
