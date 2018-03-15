@@ -225,7 +225,7 @@ const checkoutView = () => {
 
 }
 
-    let precio = 30;
+    // let precio = 30;
 
 paypal.Button.render({
     env: 'sandbox', // sandbox | production
@@ -248,7 +248,8 @@ paypal.Button.render({
             payment: {
                 transactions: [
                     {
-                        amount: { total: `${precio}`, currency: 'USD' }
+                        amount: { total: sum,
+                        currency: 'USD' }
 
                     }
                 ]
