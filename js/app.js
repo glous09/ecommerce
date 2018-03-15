@@ -16,7 +16,6 @@ const callGeneralProductsApi = () => {
         .then(r => r.json())
         .then(data => {
             const dataInfo = data.results;
-            console.log(dataInfo);
             printData(dataInfo, sectionName)
         })
         .catch(e => console.log(e));
@@ -111,7 +110,7 @@ function changeButtonMode(button, id) {
 }
 
 function addToCart(data) {
-    console.log(data);
+    // console.log(data);
    cartProducts.push(data);
     increaseCounter();
 }
@@ -120,7 +119,7 @@ function increaseCounter() {
     let containerCounter = document.getElementById("counter-items");
     let elementsInArr = cartProducts.length;
     containerCounter.innerText = elementsInArr;
-    console.log(elementsInArr);
+    // console.log(elementsInArr);
 }
 
 // function removeFromCart(data) {
@@ -211,33 +210,47 @@ let sum = 0;
 const checkoutView = () => {
 
     let template = '';
-
+    let templateTotal = '';
     cartProducts.forEach(product => {
         
         let title = product.title;
         let image = product.image;
         let price = parseInt(product.price);
       
-        template += `<div class="col l4">
-        <h2 class="header">${title}</h2>
-        <div class="card horizontal">
-          <div class="card-image">
-            <img src="${image}" class="">
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-              <p></p>
-            </div>
-            <div class="card-action">
-            <p>${price}</p>
-            </div>
-          </div>
+        template += `<div class="row purple1">
+
+        <div class="col l4">
+        <div class="cardImage">
+        <img src="${image}" class="cardImage">
         </div>
-      </div>`
+        </div>
+
+        <div class="col l4">
+        <div class="cardImage">
+        <h3 class="purple4-text title ">${title}</h3>
+        </div>
+        </div>
+
+        <div class="col l4">
+        <div class="cardImage">
+        <h4 class="price">$${price}</h4>
+        </div>
+        </div>
       
+      </div>`
+
         sum = sum + price;
+
+
     })
-    totalContainer.innerHTML = sum;
+    templateTotal += `<div class="row">
+    <div class="col l4 push-l8">
+    <div class="cardImage">
+    <h4 class="price">Total $${sum}</h4>
+    </div>
+    </div>
+    </div>`;
+    totalContainer.innerHTML = templateTotal;
     checkoutContainer.innerHTML = template;
 
     // const containerProductTotal = document.createElement("div");

@@ -11,16 +11,18 @@ li{
 }
 
 
-.card {
-  height: 550px;
+.cardImage{
+    width: 80px;
+    height: 80px;
 }
 
-.cardFontSize{
-    font-size: 9pt;
-}
 
 .limelight{
     font-family: 'Limelight', cursive;
+}
+
+.price{
+    color: rgb(45, 23, 122);
 }
 
 .purple1{
@@ -83,6 +85,12 @@ li{
     text-align: center;
     vertical-align: middle;
     line-height: 80px;
+}
+
+
+
+.title{
+    font-family: 'Gill Sans', sans-serif;
 }
 
 .transparency{
