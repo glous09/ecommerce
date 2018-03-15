@@ -16,6 +16,7 @@ const callGeneralProductsApi = () => {
         .then(r => r.json())
         .then(data => {
             const dataInfo = data.results;
+            console.log(dataInfo);
             printData(dataInfo, sectionName)
         })
         .catch(e => console.log(e));
@@ -110,6 +111,7 @@ function changeButtonMode(button, id) {
 }
 
 function addToCart(data) {
+    console.log(data);
    cartProducts.push(data);
     increaseCounter();
 }
@@ -211,17 +213,38 @@ const checkoutView = () => {
     let template = '';
     
     cartProducts.forEach(product => {
+        
+        let title = product.title;
+        let image = product.image;
         let price = parseInt(product.price);
-        console.log(price);
-        template += `<tr>
-        <th scope="row">${product.title}</th>
-        <td>${product.price}</td>
-        </tr>`
+      
+        template += `<div class="col l4">
+        <h2 class="header">${title}</h2>
+        <div class="card horizontal">
+          <div class="card-image">
+            <img src="${image}" class="">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p></p>
+            </div>
+            <div class="card-action">
+            <p>${price}</p>
+            </div>
+          </div>
+        </div>
+      </div>`
       
         sum = sum + price;
     })
     totalContainer.innerHTML = sum;
     checkoutContainer.innerHTML = template;
+
+    // const containerProductTotal = document.createElement("div");
+    // containerProductTotal.classList.add("col");
+    // containerProductTotal.classList.add("m4");
+    // containerProductTotal.innerHTML = template;
+    // containerSection.appendChild(containerProductTotal);
 
 }
 
