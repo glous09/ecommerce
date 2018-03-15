@@ -29,7 +29,7 @@ const callApi = e => {
     const sectionClick = event.currentTarget;
     const sectionName = sectionClick.dataset.section;
 
-    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=${sectionName}&includes=MainImage,Images:3&limit=5&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
+    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=${sectionName}&includes=MainImage,Images:3&limit=50&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
 
 
     fetch(url)
