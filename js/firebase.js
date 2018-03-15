@@ -9,7 +9,7 @@ var config = {
   messagingSenderId: "1022431917306"
 };
 
-//firebase.initializeApp(config);
+firebase.initializeApp(config);
 
       /******Login*******/
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -23,8 +23,9 @@ $('#log-in').click(function(e){
     $('#log-in').hide();
     $('#profile-photo').append("<img class='image-profile' src='"+ result.user.photoURL +"'/>");
     console.log("<img src='"+ result.user.photoURL +"'/>");
-    $(".username").text(result.user.displayName);
+    $("#username").text(result.user.displayName);
     console.log(result.user.displayName);
+    $('#email').text(result.user.email)
     $(".log-out").removeClass("hide");
     $(".log-out").addClass("show");
   });

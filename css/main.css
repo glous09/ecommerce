@@ -10,6 +10,10 @@ li{
     color: black;
 }
 
+.card {
+  height: 550px;
+}
+
 .cardFontSize{
     font-size: 9pt;
 }
@@ -77,7 +81,7 @@ li{
     background-size: 1800px;
     text-align: center;
     vertical-align: middle;
-    line-height: 80px; 
+    line-height: 80px;
 }
 
 .transparency{
@@ -85,7 +89,6 @@ li{
 }
 
 .image-profile {
-  width: 10%;
+  width: 20%;
   border-radius: 50%;
 }
-

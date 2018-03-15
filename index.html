@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Limelight|Montserrat:400,500,600,700,900" rel="stylesheet">  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
-<body>      
+<body>
 
    <!--**** NAV ****-->
 
@@ -22,7 +22,7 @@
         <div class="col l5 push-l5 m5 push-m5">
             <ul id="nav-mobile" class="hide-on-med-and-down right">
                 <li><img src="assets/images/cart.svg" alt="" height="20vh"><span class="purple5-text" id="counter-items">0</span></li>
-                <li><a class="purple5-text" href="#">Login</a></li>
+                <li><a class="purple5-text">Login</a></li>
                 <li><a class="purple5-text" href="#checkout" id="checkout-link">Checkout</a></li>
                 <li class="spaceNav"></li>
               </ul>
@@ -34,21 +34,21 @@
               <div class="background">
                 <img src="assets/images/sidebar.jpg">
               </div>
-              <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-              <a href="#!name"><span class="white-text name">John Doe</span></a>
-              <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+              <a id="profile-photo" href="#!user"></a>
+              <a href="#!name"><span  id="username" class="white-text name">John Doe</span></a>
+              <a href="#!email"><span id="email" class="white-text email">jdandturk@gmail.com</span></a>
             </div></li>
 
               <li><img src="assets/images/cart.svg" alt="" height="20vh"><span class="purple5-text" id="counter-items">0</span></li>
-              <li><a class="purple5-text" href="#">Login</a></li>
+              <li><a id="log-in" class="purple5-text" href="#">Login</a></li>
               <li><a class="purple5-text" href="#checkout" id="checkout-link">Checkout</a></li>
-            
+
        </ul>
      </div>
    </nav>
 
        <!--**** TABS ****-->
-      
+
        <div class="nav-content ">
           <ul class="tabs purple5 black-text center">
               <li data-sectioln="jewelry" onclick="callApi()" class="tab"><a class="active" href="#jewelry">Home</a></li>
@@ -66,13 +66,13 @@
       <div class="container-fluid">
         <div id="etsy-images"></div>
         <div class="row" id="jewelry">
-          
+
                 <!--**** CAROUSEL ****-->
-            
+
       <div class="carousel carousel-slider center"  data-indicators="true">
           <div class="carousel-fixed-item center purple1fade">
               <h1 class="limelight purple1-text">AMATISTA</h1>
-              
+
                   <!-- <div class="container  nav-wrapper purple3-text ">
                       <form id="etsy-search" class="l3 push-l3">
                           <div class="input-field">
@@ -84,11 +84,11 @@
                           </div>
                         </form>
                   </div> -->
-                
+
                 <div class="row"></div>
                 <div class="row"></div>
           </div>
-       
+
           <div class="carousel-item purple5 white-text" href="#one!">
             <img class="carImg" src="assets/images/am3.jpg" alt="" width="50px">
           </div>
@@ -133,7 +133,7 @@
 
 
     <!-- ***** FOOTER ***** -->
-  
+
 <footer class="page-footer purple3">
   <div class="container">
     <div class="row">
@@ -161,9 +161,6 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-database.js"></script>
 
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 
