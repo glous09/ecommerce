@@ -7,9 +7,9 @@ sectionCheckout.classList.add("hide");
 checkoutContainer.classList.add("hide");
 totalContainer.classList.add("hide");
 
-
+/*
 const callGeneralProductsApi = () => {
-    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=jewelry&includes=MainImage,Images:3&limit=50&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
+    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=jewelry&includes=MainImage,Images:3&limit=3&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
     let sectionName = "jewelry";
 
     fetch(url)
@@ -22,7 +22,7 @@ const callGeneralProductsApi = () => {
 
 }
 callGeneralProductsApi();
-
+*/
 
 //FUNCIÓN PARA LLAMAR A LA API EN CADA CLICK EN EL NOMBRE DE LA SECCIÓN
 const callApi = e => {
@@ -39,9 +39,8 @@ const callApi = e => {
             printData(dataInfo, sectionName)
 
         })
-        .catch(e => console.log('Something went wrong'));
+        .catch(e => console.log('e'));
 }
-
 
 
 
@@ -49,7 +48,11 @@ const callApi = e => {
 const printData = (data, sectionName) => {
 
     sectionTabs.classList.remove("hide");
+
+
     sectionCheckout.classList.add("hide");
+    checkoutContainer.classList.add("hide");
+    totalContainer.classList.add("hide");
 
     const containerSection = document.querySelector(`#${sectionName}`);
 
@@ -72,7 +75,7 @@ const printData = (data, sectionName) => {
             <span class="card-title activator grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">more_vert</i></span>
             <p>Price: ${item.price} USD</p>
             <p>Quedan: ${item.quantity}</p>
-            <button data-product-id=${item.listing_id} data-price=${item.price} data-title=${titleItem[0]} data-image=${item.MainImage.url_570xN} onclick="changeButtonMode(this, ${item.listing_id})" class='btn btn-primary'>Add to cart</button>
+            <button data-product-id=${item.listing_id} data-price=${item.price} data-title=${titleItem[0]} data-image=${item.MainImage.url_570xN} onclick="changeButtonMode(this, ${item.listing_id})" class='btn-style'>Add to cart</button>
           </div>
           <div class="card-reveal">
             <span max-height="100px" class="card-title grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">close</i></span>
@@ -83,7 +86,7 @@ const printData = (data, sectionName) => {
         `;
         const containerProduct = document.createElement("div");
         containerProduct.classList.add("col");
-        containerProduct.classList.add("m4");
+        containerProduct.classList.add("m6");
         containerProduct.innerHTML = template;
         containerSection.appendChild(containerProduct);
 
@@ -96,6 +99,8 @@ let cartProducts = []
 function changeButtonMode(button, id) {
     let info = event.target.dataset;
     let data = JSON.parse(JSON.stringify(info))
+    //console.log(info);
+    //console.log(button);
 
     if (button.innerHTML === 'Add to cart') {
         button.innerHTML = 'Remove from cart'
@@ -105,14 +110,15 @@ function changeButtonMode(button, id) {
         button.classList.add("purple3")
         button.innerHTML = 'Add to cart'
         button.classList.remove("red");
-        // removeFromCart(data);
+         removeFromCart(data);
     }
 }
 
 function addToCart(data) {
-    // console.log(data);
+    //console.log(data);
    cartProducts.push(data);
     increaseCounter();
+    console.log(data);
 }
 
 function increaseCounter() {
@@ -122,26 +128,19 @@ function increaseCounter() {
     // console.log(elementsInArr);
 }
 
-// function removeFromCart(data) {
+function removeFromCart(data) {
 
-//     let indexOfItemToDelete = cartProducts.indexOf(id);
-//     //console.log(cartInfo);
-//     //console.log(indexOfItemToDelete);
-//     cartInfo.splice(indexOfItemToDelete, 1);
-//     localStorage.setItem("cart", JSON.stringify(cartInfo));
-//     console.log(localStorage.getItem("cart"));
-//     decreaseCounter()
-// }
+  let indexOfItemToDelete = cartProducts.indexOf(data)+1;
+  cartProducts.splice(indexOfItemToDelete, 1);
+  decreaseCounter()
+}
 
+function decreaseCounter() {
+    let containerCounter = document.getElementById("counter-items");
+    let elementsInArr = cartProducts.length;
+    containerCounter.innerText = elementsInArr;
+}
 
-
-// function decreaseCounter() {
-//     let containerCounter = document.getElementById("counter-items");
-//     let stringIds = localStorage.getItem("cart")
-//     let strIdToArr = (JSON.parse(stringIds)).length;
-//     //console.log(strIdToArr);
-//     containerCounter.innerText = strIdToArr;
-// }
 
 
 (function ($) {
@@ -165,6 +164,7 @@ function increaseCounter() {
                         $('#etsy-images').empty();
                         if (data.count > 0) {
                             $.each(data.results, function (i, item) {
+
                                 $("<img/>").attr("src", item.Images[0].url_75x75).appendTo("#etsy-images").wrap(
                                     "<a href='" + item.url + "'></a>"
                                 );
@@ -212,11 +212,11 @@ const checkoutView = () => {
     let template = '';
     let templateTotal = '';
     cartProducts.forEach(product => {
-        
+
         let title = product.title;
         let image = product.image;
         let price = parseInt(product.price);
-      
+
         template += `<div class="row purple1">
 
         <div class="col l4">
@@ -236,7 +236,7 @@ const checkoutView = () => {
         <h4 class="price">$${price}</h4>
         </div>
         </div>
-      
+
       </div>`
 
         sum = sum + price;
