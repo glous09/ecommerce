@@ -28,8 +28,8 @@ carrito, y cambia de color cuando ya está agregado.
 
 *CHECKOUT VIEW*
 Ya seleccionados los productos que deseamos comprar se pasa a la tab checkout y
- se muestra lo que hay dentro del carrito de compras y se da la opción de pagar
- con PAYPAL:
+se muestra lo que hay dentro del carrito de compras y se da la opción de pagar
+con PAYPAL:
 
 ![checkout](assets/images/checkout.png).
 
