@@ -7,9 +7,9 @@ sectionCheckout.classList.add("hide");
 checkoutContainer.classList.add("hide");
 totalContainer.classList.add("hide");
 
-/*
+
 const callGeneralProductsApi = () => {
-    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=jewelry&includes=MainImage,Images:3&limit=3&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
+    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=jewelry&includes=MainImage,Images:3&limit=&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
     let sectionName = "jewelry";
 
     fetch(url)
@@ -22,7 +22,7 @@ const callGeneralProductsApi = () => {
 
 }
 callGeneralProductsApi();
-*/
+
 
 //FUNCIÓN PARA LLAMAR A LA API EN CADA CLICK EN EL NOMBRE DE LA SECCIÓN
 const callApi = e => {
@@ -219,19 +219,19 @@ const checkoutView = () => {
 
         template += `<div class="row purple1">
 
-        <div class="col l4">
+        <div class="col l4 left">
         <div class="cardImage">
         <img src="${image}" class="cardImage">
         </div>
         </div>
 
-        <div class="col l4">
+        <div class="col l4 center">
         <div class="cardImage">
         <h3 class="purple4-text title ">${title}</h3>
         </div>
         </div>
 
-        <div class="col l4">
+        <div class="col l4 right">
         <div class="cardImage">
         <h4 class="price">$${price}</h4>
         </div>
@@ -244,7 +244,7 @@ const checkoutView = () => {
 
     })
     templateTotal += `<div class="row">
-    <div class="col l4 push-l8">
+    <div class="col l4 right">
     <div class="cardImage">
     <h4 class="price">Total $${sum}</h4>
     </div>
