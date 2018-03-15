@@ -60,7 +60,7 @@ const printData = (data, sectionName) => {
         let photo = item.Images;
 
         //.split(/[,.*-]/g)
-        let titleItem = item.title.split(/[()/,.*-]/g);
+        let titleItem = item.title.split(/[|()/,.*-]/g);
         let descriptionItem = item.description.split(/[,.*-]/g);
 
         let template = `
