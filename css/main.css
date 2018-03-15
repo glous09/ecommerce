@@ -10,10 +10,14 @@ li{
     color: black;
 }
 
-/* .card-image{
-    width: 200px;
-    height: 20px;
-} */
+
+.card {
+  height: 550px;
+}
+
+.cardFontSize{
+    font-size: 9pt;
+}
 
 .limelight{
     font-family: 'Limelight', cursive;
@@ -78,7 +82,7 @@ li{
     background-size: 1800px;
     text-align: center;
     vertical-align: middle;
-    line-height: 80px; 
+    line-height: 80px;
 }
 
 .transparency{
@@ -86,7 +90,6 @@ li{
 }
 
 .image-profile {
-  width: 10%;
+  width: 20%;
   border-radius: 50%;
 }
-

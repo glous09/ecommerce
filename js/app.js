@@ -38,7 +38,7 @@ const callApi = e => {
         .then(data => {
             const dataInfo = data.results;
             printData(dataInfo, sectionName)
-            
+
         })
         .catch(e => console.log('Something went wrong'));
 }
@@ -61,13 +61,13 @@ const printData = (data, sectionName) => {
         let photo = item.Images;
 
         //.split(/[,.*-]/g)
-        let titleItem = item.title.split(/[,.*-]/g);
+        let titleItem = item.title.split(/[()/,.*-]/g);
         let descriptionItem = item.description.split(/[,.*-]/g);
 
         let template = `
         <div class="card">
           <div class="card-image">
-            <img class="activator" src=${item.MainImage.url_570xN}>
+            <img class="activator" height="200px" src=${item.MainImage.url_570xN}>
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">more_vert</i></span>
@@ -76,7 +76,7 @@ const printData = (data, sectionName) => {
             <button data-product-id=${item.listing_id} data-price=${item.price} data-title=${titleItem[0]} data-image=${item.MainImage.url_570xN} onclick="changeButtonMode(this, ${item.listing_id})" class='btn btn-primary'>Add to cart</button>
           </div>
           <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">close</i></span>
+            <span max-height="100px" class="card-title grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">close</i></span>
             <p>${descriptionItem[0]}</p>
             <p>Materials: ${item.materials}</p>
           </div>
@@ -209,9 +209,9 @@ checkoutLink.addEventListener("click", payment);
 let sum = 0;
 
 const checkoutView = () => {
-    
+
     let template = '';
-    
+
     cartProducts.forEach(product => {
         
         let title = product.title;
