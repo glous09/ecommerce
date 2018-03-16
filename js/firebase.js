@@ -14,6 +14,7 @@ firebase.initializeApp(config);
       /******Login*******/
 var provider = new firebase.auth.GoogleAuthProvider();
 
+let user = result.user.displayName;
 $('#log-in').click(function(e){
   e.preventDefault();
   firebase.auth()
