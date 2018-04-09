@@ -17,18 +17,40 @@
 
   <nav class="transparent">
      <div class="nav">
-       <!-- <a href="#" class="brand-logo center">Logo</a> -->
-       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
       <div class="row">
         <div class="col l12 m12 s12">
-            <ul>
-                <li class="limelight logo purple4-text">AMATISTA</li>
-                <li class="right"><a class="purple5-text">Login</a></li>
-                <li class="right"><a class="purple5-text" href="#checkout" id="checkout-link">Checkout</a></li>
-                <li class="right"><img src="assets/images/cart.svg" alt="" height="20vh"><span class="purple5-text" id="counter-items">0</span></li>
-              </ul>
+          <ul>
+            <li class="limelight logo purple4-text">AMATISTA</li>
+            <li class="right"><a class="purple5-text">Login</a></li>
+            <li class="right"><a class="purple5-text" href="#checkout" id="checkout-link">Checkout</a></li>
+            <li class="right"><img src="assets/images/cart.svg" alt="" height="20vh"><span class="purple5-text" id="counter-items">0</span></li>
+          </ul>
         </div>
       </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row ">
+      <div class="nav-wrapper purple3-text ">
+        <form id="etsy-search" class="col m12 valign-wrapper">
+
+            <div class="col m1 right-align">
+              <i class="material-icons">search</i>
+            </div>
+            <div class="col m9">
+              <input id="etsy-terms" type="search" class="white" placeholder="Search for jewerly, gifts, accesories...">
+            </div>
+            <div class="col m2">
+              <button id="etsy-search-btn" type="submit" name="button" class="btn purple4">Search</button>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+<!--
 
        <ul class="side-nav purple1" id="mobile-demo">
           <li><div class="user-view">
@@ -44,9 +66,6 @@
               <li><a id="log-in" class="purple5-text" href="#">Login</a></li>
               <li><a class="purple5-text" href="#checkout" id="checkout-link">Checkout</a></li>
 
-       </ul>
-     </div>
-   </nav>
 
        <!--**** TABS ****-->
        <div class="nav-content ">
@@ -64,7 +83,11 @@
 
     <div id="tabs">
       <div class="container-fluid">
-        <div id="etsy-images"></div>
+        <div class="container">
+          <div class="row" id="etsy-images">
+
+          </div>
+        </div>
 
 
 
@@ -96,17 +119,7 @@
 
 
 
-    <!-- <div class="container  nav-wrapper purple3-text ">
-        <form id="etsy-search" class="l3 push-l3">
-            <div class="input-field">
-              <label for="">Search for jewerly, gifts, accesories...</label>
-              <input id="etsy-terms" type="search" class="white" width="50px;">
-              <label class="label-icon" for="etsy-terms"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
-              <button type="submit" name="button" class="btn purple4">Search</button>
-            </div>
-          </form>
-    </div> -->
+
 
                 <!--**** CAROUSEL ****-->
 

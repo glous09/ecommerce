@@ -29,7 +29,7 @@ const callApi = e => {
     const sectionClick = event.currentTarget;
     const sectionName = sectionClick.dataset.section;
 
-    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=${sectionName}&includes=MainImage,Images:3&limit=50&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
+    const url = `https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?keywords=${sectionName}&includes=MainImage,Images:3&limit=51&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`;
 
 
     fetch(url)
@@ -63,35 +63,38 @@ const printData = (data, sectionName) => {
         let photo = item.Images;
 
         //.split(/[,.*-]/g)
-        let titleItem = item.title.split(/[()/,.*-]/g);
+        let titleItem = item.title.split(/[()/,.•"*-]/g);
         let descriptionItem = item.description.split(/[,.*-]/g);
 
         let template = `
-        <div class="card">
-          <div class="card-image">
-            <img class="activator" height="200px" src=${item.MainImage.url_570xN}>
+        <div class="info-item">
+          <div class="image-item">
+            <img class="activator" src=${item.MainImage.url_570xN}>
           </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">more_vert</i></span>
+          <div class="description-item">
+            <span class="title-item activator grey-text text-darken-4">${titleItem[0]}</span>
             <p>Price: ${item.price} USD</p>
             <p>Quedan: ${item.quantity}</p>
             <button data-product-id=${item.listing_id} data-price=${item.price} data-title=${titleItem[0]} data-image=${item.MainImage.url_570xN} onclick="changeButtonMode(this, ${item.listing_id})" class='btn-style'>Add to cart</button>
           </div>
-          <div class="card-reveal">
-            <span max-height="100px" class="card-title grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">close</i></span>
-            <p>${descriptionItem[0]}</p>
-            <p>Materials: ${item.materials}</p>
-          </div>
+
         </div>
         `;
         const containerProduct = document.createElement("div");
         containerProduct.classList.add("col");
-        containerProduct.classList.add("m6");
+        containerProduct.classList.add("m4");
         containerProduct.innerHTML = template;
         containerSection.appendChild(containerProduct);
 
     })
 }
+
+/*
+<div class="">
+  <span class="card-title grey-text text-darken-4">${titleItem[0]}<i class="material-icons right">close</i></span>
+  <p>${descriptionItem[0]}</p>
+  <p>Materials: ${item.materials}</p>
+</div>*/
 
 let cartProducts = []
 
@@ -99,8 +102,8 @@ let cartProducts = []
 function changeButtonMode(button, id) {
     let info = event.target.dataset;
     let data = JSON.parse(JSON.stringify(info))
-    //console.log(info);
-    //console.log(button);
+    console.log(button);
+    console.log(id);
 
     if (button.innerHTML === 'Add to cart') {
         button.innerHTML = 'Remove from cart'
@@ -148,7 +151,6 @@ function decreaseCounter() {
         $(".button-collapse").sideNav();
         $('.carousel.carousel-slider').carousel({ fullWidth: true });
         $('#etsy-search').bind('submit', function () {
-            api_key = "your_api_key";
             terms = $('#etsy-terms').val();
             etsyURL = "https://openapi.etsy.com/v2/listings/active.js?keywords=" +
                 terms + "&limit=12&includes=Images:1&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl";
@@ -165,12 +167,12 @@ function decreaseCounter() {
                         if (data.count > 0) {
                             $.each(data.results, function (i, item) {
 
-                                $("<img/>").attr("src", item.Images[0].url_75x75).appendTo("#etsy-images").wrap(
-                                    "<a href='" + item.url + "'></a>"
-                                );
-                                if (i % 4 == 3) {
-                                    $('<br/>').appendTo('#etsy-images');
-                                }
+                                let titleItem = item.title.split(/[()/,.*-]/g);
+
+                                $("<img/>").attr("src", item.Images[0].url_170x135).addClass("break").appendTo("#etsy-images");
+                                $("<p/>").html(titleItem[0] + '<br />' + '<h6 class="price-item">' + item.price +  " usd"+ '<h6/>' + '<br />' + '<button class="btn-style"  onclick="changeButtonMode(this,"' + item.listing_id +")> Add to cart").addClass("break").appendTo("#etsy-images");
+
+
                             });
                         } else {
                             $('<p>No results.</p>').appendTo('#etsy-images');
