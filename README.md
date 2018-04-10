@@ -1,20 +1,32 @@
-# AMATISTA ECOMMERSE
+# AMATISTA ECOMMERCE
 ------
-Esta aplicación es una ecommerce dedicada a la venta de joyeria, por internet.
-Para el desarrollo de esta aplicación se consumió  ETSY API la cuál contiene
-diversas cantidades de artículos, de cuales solo tomanos el ENDPOINT para obtener
-el JSON de la categoria jewelry, en la cual a su ves tiene estas subcategorias:
 
-## TABS
+![website](assets/images/imac.png)
+
+Esta aplicación es una ecommerce dedicada a la venta de joyeria.
+Al ser una api con un gran número de productos, delimitamos nuestra solicitud sólo a joyería.
+
+
+## CATEGORÍAS
 
 1. Necklaces
 2. Rings
 3. Bracelets
 4. Earrings
 
+
+## CONSTRUCCIÓN DEL ENDPOINT
+
+Para hacer la llamada a la api construimos el endpoint restinguiendo la búsqueda sólo a productos que tuvieran la keyword "jewelry". Incluimos a la petición una imagen principal "MainImage" y 3 images más que pudieran complementar el detalle del producto.
+
+ENDPOINT:
+https://openapi.etsy.com/v2/listings/active?keywords=jewelry&includes=MainImage,Images:3&limit=&category=jewelry&api_key=wsx5gs9dbm720tz6pzr1a3pl`
+
+## COMPONENTES DEL SITIO
+
 En base a las categorias anteriores construyó la siguiente barra de tabs:
 
-![tabsBar](assets/images/tabs.png).
+![descripcion](assets/images/descripcion.png).
 
 ## IMAGES PRODUCTS
 Una vez que  se accede a cierta categoría se mostraran las imágenes de varios
@@ -23,7 +35,6 @@ y precio. También se le agrega un botón a cada tarjeta el cual permite agregar
 carrito, y cambia de color cuando ya está agregado.
 
 
-![cardProducts](assets/images/products.png).
 
 ## CHECKOUT VIEW
 Ya seleccionados los productos que deseamos comprar se pasa a la tab checkout y
@@ -37,13 +48,10 @@ De igual manera se cuenta con una sección de NEWSLETTER en el cual si te suscri
 te llegan notificaciones con las últimas tendencias directamente a la bandeja
 de tu correo.
 
-![checkout](assets/images/newsletter.png).
-
-## Login
-De igual manera si te gusta la aplicación existe un login en el cual almacenamos
-tus datos como: foto de usuario, email y nombre.
 
 
-Desarrollado para 
+
+
+Desarrollado para
 ------
 _Laboratoria_
